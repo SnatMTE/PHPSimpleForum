@@ -25,16 +25,11 @@ try {
     echo "Error loading replies: " . $e->getMessage();
     exit;
 }
+
+$page_name = $topic['title'];
+include("template/header.php")
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>View Topic</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <p><a href="./">Go back to forum</a></p>
     <h1><?php echo $topic['title']; ?></h1>
     <p>
         <?php echo $topic['body']; ?>
@@ -74,6 +69,7 @@ try {
         <p>
             Please <a href="login.php">login</a> to post a reply.
         </p>
-    <?php } ?>
-</body>
-</html>
+    <?php } 
+    
+    include("template/footer.php")
+    ?>

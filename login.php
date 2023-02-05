@@ -25,17 +25,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         $error = "Error logging in: " . $e->getMessage();
     }
 }
+
+$page_name = "Login";
+include("template/header.php")
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-<p><a href="./">Go back to forum</a></p>
-    <h1>Login</h1>
+<h1>Login</h1>
     <hr>
     <?php if (isset($error)) { ?>
         <p style="color: red;"><?php echo $error; ?></p>
@@ -56,5 +51,4 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <p>
         Don't have an account? <a href="signup.php">Sign up here</a>.
     </p>
-</body>
-</html>
+<?php include("template/footer.php") ?>

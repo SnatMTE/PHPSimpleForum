@@ -28,16 +28,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         $error = "Error signing up: " . $e->getMessage();
     }
 }
-?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Sign Up</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-<p><a href="./">Go back to forum</a></p>
+$page_name = "Sign Up";
+include("template/header.php")
+
+?>
     <h1>Sign Up</h1>
     <hr>
     <?php if (isset($error)) { ?>
@@ -56,5 +51,5 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             <input type="submit" value="Submit">
         </p>
     </form>
-</body>
-</html>
+
+    <?php include("template/footer.php"); ?>

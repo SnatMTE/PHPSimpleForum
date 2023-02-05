@@ -33,23 +33,11 @@ try {
     echo "Error: " . $e->getMessage();
   }
 
+  $page_name = "Create new topic";
+  include("template/header.php")
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Forum</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="logout.php">Logout</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
+
+<main>
     <h2>Create a new topic as <?php echo $_SESSION['user']['username']; ?>.</h2>
     <form action="" method="post">
       <div>
@@ -65,5 +53,5 @@ try {
       </div>
     </form>
   </main>
-</body>
-</html>
+
+<?php include("template/footer.php") ?>

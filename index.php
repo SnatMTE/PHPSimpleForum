@@ -16,29 +16,11 @@ try {
   echo "Error: " . $e->getMessage();
 }
 
+$page_name = "Forum";
+include("template/header.php")
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Forum</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.php">Home</a></li>
-        <?php if(isset($_SESSION['user'])) { ?>
-          <li>Hello, <?php echo $_SESSION['user']['username']; ?></li>
-          <li><a href="logout.php">Logout</a></li>
-        <?php } else { ?>
-          <li><a href="login.php">Login</a></li>
-          <li><a href="signup.php">Sign Up</a></li>
-        <?php } ?>
-      </ul>
-    </nav>
-  </header>
-  <main>
+
+<main>
     <h2>Topics</h2>
     <table>
       <thead>
@@ -62,5 +44,4 @@ try {
       <a href="create_topic.php">Create a new topic</a>
     <?php } ?>
   </main>
-</body>
-</html>
+<?php include("template/footer.php") ?>
