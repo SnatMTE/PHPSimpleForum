@@ -5,7 +5,7 @@
 $host = '';
 $dbname = '';
 $username = '';
-$password = '-';
+$password = '';
 
 //Below is general config details. 
 
