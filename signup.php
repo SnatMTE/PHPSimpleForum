@@ -30,7 +30,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 }
 
 $page_name = "Sign Up";
-include("template/header.php")
+include("template/header.php");
 
 ?>
     <h1>Sign Up</h1>

@@ -19,7 +19,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             header('Location: index.php');
             exit;
         } else {
-            $error = "Incorrect username or password.";
+            $error = "Incorrect username or password. <a href='forgotten_password.php'>Forgotten password?</a>";
         }
     } catch (PDOException $e) {
         $error = "Error logging in: " . $e->getMessage();

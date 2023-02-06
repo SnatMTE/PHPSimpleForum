@@ -34,8 +34,18 @@ include("template/header.php")
         <?php foreach($topics as $topic) { ?>
           <tr>
             <td><a href="view_topic.php?id=<?php echo $topic['id']; ?>"><?php echo $topic['title']; ?></a></td>
-            <td><?php echo $topic['username']; ?></td>
-            <td><?php echo $topic['created_at']; ?></td>
+            <td>
+            <?php 
+            $user_id = $topic['user_id'];
+            $user_stmt = $pdo->prepare("SELECT username FROM users WHERE id = :id");
+            $user_stmt->execute([
+                'id' => $user_id
+            ]);
+            $user = $user_stmt->fetch();
+            echo $user['username']; 
+            ?>
+          </td> 
+            <td><?php echo date("F jS, Y", strtotime($topic['created_at'])); ?></td>
           </tr>
         <?php } ?>
       </tbody>
