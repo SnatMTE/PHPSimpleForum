@@ -17,24 +17,19 @@ try {
 }
 
 $page_name = "Forum";
-include("template/header.php")
+include("template/header.php");
+include("template/left.php");
+
 ?>
 
+<h2>Topics</h2><hr />
+
 <main>
-    <h2>Topics</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Created By</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
+
         <?php foreach($topics as $topic) { ?>
-          <tr>
-            <td><a href="view_topic.php?id=<?php echo $topic['id']; ?>"><?php echo $topic['title']; ?></a></td>
-            <td>
+          <section class="index">
+          <div class="index_body"><a href="view_topic.php?id=<?php echo $topic['id']; ?>"><?php echo $topic['title']; ?></a></div>          
+
             <?php 
             $user_id = $topic['user_id'];
             $user_stmt = $pdo->prepare("SELECT username FROM users WHERE id = :id");
@@ -42,16 +37,19 @@ include("template/header.php")
                 'id' => $user_id
             ]);
             $user = $user_stmt->fetch();
-            echo $user['username']; 
+            echo "<div class=\"index_sidebar\">Created by ";
+            echo $user['username'];
+            echo "</div>"; 
             ?>
-          </td> 
-            <td><?php echo date("F jS, Y", strtotime($topic['created_at'])); ?></td>
-          </tr>
-        <?php } ?>
-      </tbody>
-    </table>
+ 
+           <div class="grow1"><?php echo date("F jS, Y", strtotime($topic['created_at'])); ?></div>
+           
+          </section>
+          <hr />
+          <?php } ?>
     <?php if(isset($_SESSION['user'])) { ?>
       <a href="create_topic.php">Create a new topic</a>
     <?php } ?>
   </main>
+
 <?php include("template/footer.php") ?>

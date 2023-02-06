@@ -29,8 +29,10 @@ try {
 
 $page_name = $topic['title'];
 include("template/header.php");
+include("template/left.php");
+
 ?>
-<h1><?php echo $topic['title']; ?></h1>
+<h2><?php echo $topic['title']; ?></h2>
 <p>
     <?php echo $topic['body']; ?>
 </p>
@@ -42,7 +44,6 @@ include("template/header.php");
 </p>
 <hr>
 
-<h2>Replies</h2>
 <?php foreach ($replies as $reply) { 
     try {
         $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :user_id");
@@ -55,18 +56,40 @@ include("template/header.php");
         exit;
     }
     ?>
-    <p>
-        <?php echo $reply['body']; ?>
-    </p>
-    <p>
-        Replied by: <?php echo $user['username']; ?> on <?php echo $reply['created_at']; ?>
-    </p>
+    <section class="layout">  
+        <div class="userdetail"><?php echo $user['username']; ?>
+    
+        <p>
+        <?php
+
+            $email = $user['email'];
+            $hash = md5(strtolower(trim($email)));
+            $url = "https://www.gravatar.com/avatar/$hash";
+
+            // Check if the Gravatar exists
+            $response = get_headers($url, 1);
+            if (strpos($response[0], "200") === false) {
+                // Gravatar does not exist, display default image
+                echo '<img src="default-gravatar.jpg" alt="Gravatar">';
+            } else {
+                // Gravatar exists, display it
+                echo '<img src="' . $url . '" alt="Gravatar">';
+            }
+
+        ?>
+        </p>
+    </div>  
+        <div class="post">
+            <p><?php echo $reply['created_at']; ?></p><?php echo $reply['body']; ?>
+        </div>
+
     <?php if (isset($_SESSION['user']) && ($_SESSION['user']['id'] === 1 || $_SESSION['user']['id'] === $reply['user_id'])) { ?>
         <form action="delete_reply.php" method="post">
             <input type="hidden" name="id" value="<?php echo $reply['id']; ?>">
             <input type="hidden" name="topic_id" value="<?php echo $_GET['id']; ?>">
             <input type="submit" value="Delete">
         </form>
+    </section>
     <?php } ?>
     <hr>
 <?php } ?>
@@ -76,12 +99,16 @@ include("template/header.php");
     <input type="hidden" name="topic_id" value="<?php echo $topic_id; ?>">
     
     <p>
-        <textarea name="body" rows="5" cols="80"></textarea>
+        <textarea name="body" id="body" rows="5" cols="80"></textarea>
     </p>
     <p>
-    <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="submit" value="Submit">
     </p>
 </form>
+<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'body' );
+</script>
 <?php } else { ?>
     <p>
         Please <a href="login.php">login</a> to post a reply.
@@ -90,4 +117,3 @@ include("template/header.php");
 
 include("template/footer.php");
 ?>
-

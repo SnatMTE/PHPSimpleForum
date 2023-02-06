@@ -5,7 +5,7 @@ include 'config.php';
 $page_name = "Forgot Password";
 include("template/header.php");
 ?>
-<h1>Forgotten password</h1>
+<h2>Forgotten password</h2>
 <hr>
 <form action="forgotten_password.php" method="post">
     <p>

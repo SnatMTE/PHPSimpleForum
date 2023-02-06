@@ -31,7 +31,7 @@ $page_name = "User Profile";
 include("template/header.php");
 ?>
 
-    <h1>Change Password and Email</h1>
+    <h2>Change Password and Email</h2>
     <form action="user.php" method="post">
         <label for="password">New Password:</label>
         <input type="password" name="password" id="password" required>
