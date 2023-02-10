@@ -27,10 +27,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 }
 
 $page_name = "Login";
-include("template/header.php")
+include("template/header.php");
+include("template/left.php");
+
 ?>
 
-<h1>Login</h1>
+<h2>Login</h2>
     <hr>
     <?php if (isset($error)) { ?>
         <p style="color: red;"><?php echo $error; ?></p>

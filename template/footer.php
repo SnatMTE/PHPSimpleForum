@@ -3,7 +3,7 @@
 <br />
 <hr />
 <p><?php echo $site_name . " &copy; " . date('Y'); ?></p>
-<p>Programmed by <a href="https://snat.co.uk/">Snat</a>. View <a href="https://github.com/SnatMTE/PHPSimpleForum">source code</a>.</p>
+<p><a href="https://github.com/SnatMTE/PHPSimpleForum">Snat's Simple Forum</a> v0.04.</p>
 </div>
 </div>
 </body>

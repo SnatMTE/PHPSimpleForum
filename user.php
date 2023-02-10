@@ -29,6 +29,8 @@ if (isset($_POST['submit'])) {
 
 $page_name = "User Profile";
 include("template/header.php");
+include("template/left.php");
+
 ?>
 
     <h2>Change Password and Email</h2>

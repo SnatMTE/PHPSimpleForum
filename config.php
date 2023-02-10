@@ -12,10 +12,9 @@ $password = '';
 $site_name = "";
 $site_email = "";
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error connecting to database: " . $e->getMessage());
-}
+// Lets include a bunch of different stuff
+
+require("includes/avatar.php");
+require("includes/db.php");
+
 ?>

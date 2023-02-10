@@ -31,6 +31,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 $page_name = "Sign Up";
 include("template/header.php");
+include("template/left.php");
+
 
 ?>
     <h1>Sign Up</h1>

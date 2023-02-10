@@ -3,8 +3,6 @@ session_start();
 include 'config.php';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if (isset($_POST['submit'])) {
         $body = $_POST['body'];

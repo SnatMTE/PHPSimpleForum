@@ -1,22 +1,11 @@
 <?php
-
-require_once 'config.php';
-
+require_once('config.php');
 session_start();
 
-try {
-  $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-  $stmt = $pdo->prepare("SELECT * FROM topics ORDER BY created_at DESC");
-  $stmt->execute();
-  $topics = $stmt->fetchAll();
-
-} catch(PDOException $e) {
-  echo "Error: " . $e->getMessage();
-}
-
+//Future change - functions!
+$topics = fetchData("SELECT * FROM topics ORDER BY created_at DESC", $pdo);
 $page_name = "Forum";
+
 include("template/header.php");
 include("template/left.php");
 
@@ -32,14 +21,18 @@ include("template/left.php");
 
             <?php 
             $user_id = $topic['user_id'];
-            $user_stmt = $pdo->prepare("SELECT username FROM users WHERE id = :id");
+            $user_stmt = $pdo->prepare("SELECT username, email FROM users WHERE id = :id");
             $user_stmt->execute([
                 'id' => $user_id
             ]);
             $user = $user_stmt->fetch();
-            echo "<div class=\"index_sidebar\">Created by ";
+            echo "<div class=\"index_sidebar\">";
             echo $user['username'];
+            $email = $user['email'];
             echo "</div>"; 
+
+            echo getGravatarImageUrl($email, 80);
+
             ?>
  
            <div class="grow1"><?php echo date("F jS, Y", strtotime($topic['created_at'])); ?></div>
